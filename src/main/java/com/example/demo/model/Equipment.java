@@ -10,20 +10,16 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-public class Customer {
+public class Equipment {
 
+    // Геттеры и сеттеры
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String fio;
-    private String position;
-    private String jobTitle;
-    private String address;
-    private String phoneNumber;
-    private String mail;
-    private String nameCompany;
-
-    // Getters and Setters
+    private String name;
+    private String serialNumber;
+    private String status;
+    private String location;
 
 }

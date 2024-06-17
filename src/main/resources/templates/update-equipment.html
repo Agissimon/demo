@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Equipment</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header>
+    <h1>Update Equipment</h1>
+</header>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/add-equipment">Add Equipment</a></li>
+        <li><a href="/update-equipment">Update Equipment</a></li>
+        <li><a href="/search-equipment">Search Equipment</a></li>
+        <li><a href="/reports">Reports</a></li>
+    </ul>
+</nav>
+<main>
+    <form action="/update-equipment" method="post" class="form-center">
+        <label for="id">Equipment ID:</label>
+        <input type="text" id="id" name="id" required>
+        <br>
+        <label for="status">New Status:</label>
+        <input type="text" id="status" name="status" required>
+        <br>
+        <label for="location">New Location:</label>
+        <input type="text" id="location" name="location" required>
+        <br>
+        <input type="submit" value="Update Equipment">
+    </form>
+</main>
+<footer>
+    <p>&copy; 2024 Equipment Management System</p>
+</footer>
+</body>
+</html>
