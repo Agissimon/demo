@@ -17,9 +17,13 @@ public class Equipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private String serialNumber;
-    private String status;
-    private String location;
-
+private String Category;
+private String ProductLine;
+private String NameProduct;
+private String SerialNumber;
+private String Description;
+private String MarketPrice;
+private String PurchasePrice;
+private String Comment;
+private String status;
 }

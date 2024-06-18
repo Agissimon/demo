@@ -18,11 +18,11 @@ public class Customer {
 
     private String fio;
     private String position;
-    private String jobTitle;
+    private String job_title;
     private String address;
-    private String phoneNumber;
+    private String phone_number;
     private String mail;
-    private String nameCompany;
+    private String name_company;
 
     // Getters and Setters
 
