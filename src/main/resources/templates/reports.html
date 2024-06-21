@@ -20,7 +20,14 @@
     </ul>
 </nav>
 <main>
-    <p>Generate and view reports on equipment usage.</p>
+    <form action="/api/v1/equipments/report" method="get" class="form-center">
+        <label>Start Date:</label><input type="date" name="startDate"><br>
+        <label>End Date:</label><input type="date" name="endDate"><br>
+        <button type="submit">Generate Report</button>
+    </form>
+    <div id="report">
+
+    </div>
 </main>
 <footer>
     <p>&copy; 2024 Equipment Management System</p>
