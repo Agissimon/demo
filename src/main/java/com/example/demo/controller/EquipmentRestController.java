@@ -18,17 +18,17 @@ public class EquipmentRestController {
     @Autowired
     private EquipmentRepository equipmentRepository;
 
-    @GetMapping("/equipments")
+    @GetMapping("/equipment")
     public List<Equipment> getAllEquipments() {
         return equipmentRepository.findAll();
     }
 
-    @PostMapping("/equipments")
+    @PostMapping("/equipment")
     public Equipment createEquipment(@RequestBody Equipment equipment) {
         return equipmentRepository.save(equipment);
     }
 
-    @GetMapping("/equipments/{id_equipment}")
+    @GetMapping("/equipment/{id_equipment}")
     public ResponseEntity<Equipment> getEquipmentById(@PathVariable(value = "id_equipment") Long equipmentId)
             throws ResourceNotFoundException {
         Equipment equipment = equipmentRepository.findById(equipmentId)
@@ -36,7 +36,7 @@ public class EquipmentRestController {
         return ResponseEntity.ok().body(equipment);
     }
 
-    @PutMapping("/equipments/{id_equipment}")
+    @PutMapping("/equipment/{id_equipment}")
     public ResponseEntity<Equipment> updateEquipment(@PathVariable(value = "id_equipment") Long equipmentId,
                                                      @RequestBody Equipment equipmentDetails) throws ResourceNotFoundException {
         Equipment equipment = equipmentRepository.findById(equipmentId)
@@ -56,7 +56,7 @@ public class EquipmentRestController {
         return ResponseEntity.ok(updatedEquipment);
     }
 
-    @DeleteMapping("/equipments/{id_equipment}")
+    @DeleteMapping("/equipment/{id_equipment}")
     public Map<String, Boolean> deleteEquipment(@PathVariable(value = "id_equipment") Long equipmentId)
             throws ResourceNotFoundException {
         Equipment equipment = equipmentRepository.findById(equipmentId)

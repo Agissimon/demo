@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Equipment</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <header>
@@ -13,14 +13,14 @@
 <nav>
     <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/add-equipment">Add Equipment</a></li>
-        <li><a href="/update-equipment">Update Equipment</a></li>
-        <li><a href="/search-equipment">Search Equipment</a></li>
+        <li><a href="/addEquipment">Add Equipment</a></li>
+        <li><a href="/updateEquipment">Update Equipment</a></li>
+        <li><a href="/searchEquipment">Search Equipment</a></li>
         <li><a href="/reports">Reports</a></li>
     </ul>
 </nav>
 <main>
-    <form action="/api/v1/equipments/search" method="get" class="form-center">
+    <form action="/api/v1/equipment/search" method="get" class="form-center">
         <label for="search">Search Equipment:</label>
         <input type="text" id="search" name="search" required>
         <br>
