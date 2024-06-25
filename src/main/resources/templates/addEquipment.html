@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Equipment</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header>
+    <h1>Add New Equipment</h1>
+</header>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/addEquipment">Add Equipment</a></li>
+        <li><a href="/updateEquipment">Update Equipment</a></li>
+        <li><a href="/searchEquipment">Search Equipment</a></li>
+        <li><a href="/reports">Reports</a></li>
+    </ul>
+</nav>
+<main>
+    <form action="/api/v1/equipment" method="post" class="form-center">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="serial">Serial Number:</label>
+        <input type="text" id="serial" name="serial" required>
+        <br>
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" required>
+        <br>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+        <br>
+        <input type="submit" value="Add Equipment">
+    </form>
+</main>
+<footer>
+    <p>&copy; 2024 Equipment Management System</p>
+</footer>
+</body>
+</html>

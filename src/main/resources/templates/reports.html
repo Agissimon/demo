@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header>
+    <h1>Reports</h1>
+</header>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/addEquipment">Add Equipment</a></li>
+        <li><a href="/updateEquipment">Update Equipment</a></li>
+        <li><a href="/searchEquipment">Search Equipment</a></li>
+        <li><a href="/reports">Reports</a></li>
+    </ul>
+</nav>
+<main>
+    <form action="/api/v1/equipment/report" method="get" class="form-center">
+        <label>Start Date:</label><input type="date" name="startDate"><br>
+        <label>End Date:</label><input type="date" name="endDate"><br>
+        <button type="submit">Generate Report</button>
+    </form>
+    <div id="report">
+
+    </div>
+</main>
+<footer>
+    <p>&copy; 2024 Equipment Management System</p>
+</footer>
+</body>
+</html>

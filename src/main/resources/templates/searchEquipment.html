@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Equipment</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header>
+    <h1>Search Equipment</h1>
+</header>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/addEquipment">Add Equipment</a></li>
+        <li><a href="/updateEquipment">Update Equipment</a></li>
+        <li><a href="/searchEquipment">Search Equipment</a></li>
+        <li><a href="/reports">Reports</a></li>
+    </ul>
+</nav>
+<main>
+    <form action="/api/v1/equipment/search" method="get" class="form-center">
+        <label for="search">Search Equipment:</label>
+        <input type="text" id="search" name="search" required>
+        <br>
+        <input type="submit" value="Search">
+    </form>
+    <div id="results">
+        <!-- Search results will be displayed here -->
+    </div>
+</main>
+<footer>
+    <p>&copy; 2024 Equipment Management System</p>
+</footer>
+</body>
+</html>
