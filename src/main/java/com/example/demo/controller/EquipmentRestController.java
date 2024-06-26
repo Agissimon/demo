@@ -28,6 +28,7 @@ public class EquipmentRestController {
         return equipmentRepository.save(equipment);
     }
 
+
     @GetMapping("/equipment/{id_equipment}")
     public ResponseEntity<Equipment> getEquipmentById(@PathVariable(value = "id_equipment") Long equipmentId)
             throws ResourceNotFoundException {
