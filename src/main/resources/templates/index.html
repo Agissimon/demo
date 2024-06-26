@@ -20,7 +20,41 @@
     </ul>
 </nav>
 <main>
-    <p>Welcome to the Equipment Management System.</p>
+    <h2>All Equipment</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Category</th>
+            <th>Product Line</th>
+            <th>Name Product</th>
+            <th>Serial Number</th>
+            <th>Description</th>
+            <th>Market Price</th>
+            <th>Purchase Price</th>
+            <th>Comment</th>
+            <th>Status</th>
+            <th>Location</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="equipment : ${equipmentList}">
+            <td th:text="${equipment.id_equipment}"></td>
+            <td th:text="${equipment.category}"></td>
+            <td th:text="${equipment.product_line}"></td>
+            <td th:text="${equipment.name_product}"></td>
+            <td th:text="${equipment.serial_number}"></td>
+            <td th:text="${equipment.description}"></td>
+            <td th:text="${equipment.market_price}"></td>
+            <td th:text="${equipment.purchase_price}"></td>
+            <td th:text="${equipment.comment}"></td>
+            <td th:text="${equipment.status}"></td>
+            <td th:text="${equipment.location}"></td>
+            <td th:text="${equipment.name}"></td>
+        </tr>
+        </tbody>
+    </table>
 </main>
 <footer>
     <p>&copy; 2024 Equipment Management System</p>

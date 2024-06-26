@@ -43,14 +43,16 @@ public class EquipmentRestController {
                 .orElseThrow(() -> new ResourceNotFoundException("Equipment not found for this id :: " + equipmentId));
 
         equipment.setCategory(equipmentDetails.getCategory());
-        equipment.setProductLine(equipmentDetails.getProductLine());
-        equipment.setNameProduct(equipmentDetails.getNameProduct());
-        equipment.setSerialNumber(equipmentDetails.getSerialNumber());
+        equipment.setProduct_line(equipmentDetails.getProduct_line());
+        equipment.setName_product(equipmentDetails.getName_product());
+        equipment.setSerial_number(equipmentDetails.getSerial_number());
         equipment.setDescription(equipmentDetails.getDescription());
-        equipment.setMarketPrice(equipmentDetails.getMarketPrice());
-        equipment.setPurchasePrice(equipmentDetails.getPurchasePrice());
+        equipment.setMarket_price(equipmentDetails.getMarket_price());
+        equipment.setPurchase_price(equipmentDetails.getPurchase_price());
         equipment.setComment(equipmentDetails.getComment());
         equipment.setStatus(equipmentDetails.getStatus());
+        equipment.setLocation(equipmentDetails.getLocation());
+        equipment.setName(equipmentDetails.getName());
 
         final Equipment updatedEquipment = equipmentRepository.save(equipment);
         return ResponseEntity.ok(updatedEquipment);
