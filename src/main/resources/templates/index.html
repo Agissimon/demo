@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equipment Management System</title>
+    <title>Equipment List</title>
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <header>
-    <h1>Equipment Management System</h1>
+    <h1>Equipment List</h1>
 </header>
 <nav>
     <ul>
@@ -20,8 +20,7 @@
     </ul>
 </nav>
 <main>
-    <h2>All Equipment</h2>
-    <table class="styled-table">
+    <table id="equipmentTable" class="styled-table">
         <thead>
         <tr>
             <th>ID</th>
@@ -29,35 +28,100 @@
             <th>Product Line</th>
             <th>Name Product</th>
             <th>Serial Number</th>
-            <th>Description</th>
-            <th>Market Price</th>
-            <th>Purchase Price</th>
-            <th>Comment</th>
             <th>Status</th>
             <th>Location</th>
-            <th>Name</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="equipment : ${equipmentList}">
-            <td th:text="${equipment.id_equipment}"></td>
-            <td th:text="${equipment.category}"></td>
-            <td th:text="${equipment.product_line}"></td>
-            <td th:text="${equipment.name_product}"></td>
-            <td th:text="${equipment.serial_number}"></td>
-            <td th:text="${equipment.description}"></td>
-            <td th:text="${equipment.market_price}"></td>
-            <td th:text="${equipment.purchase_price}"></td>
-            <td th:text="${equipment.comment}"></td>
-            <td th:text="${equipment.status}"></td>
-            <td th:text="${equipment.location}"></td>
-            <td th:text="${equipment.name}"></td>
-        </tr>
+        <!-- Динамические данные будут заполняться здесь -->
         </tbody>
     </table>
 </main>
-<footer>
-    <p>&copy; 2024 Equipment Management System</p>
-</footer>
+
+<!-- Модальное окно -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Выберите действие:</p>
+        <button id="editButton">Изменить</button>
+        <button id="deleteButton">Удалить</button>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const table = document.getElementById('equipmentTable').getElementsByTagName('tbody')[0];
+        const modal = document.getElementById('modal');
+        const editButton = document.getElementById('editButton');
+        const deleteButton = document.getElementById('deleteButton');
+        let selectedEquipmentId = null;
+
+        async function fetchData() {
+            try {
+                const response = await fetch('/api/v1/equipment');
+                const data = await response.json();
+
+                data.forEach(equipment => {
+                    const row = table.insertRow();
+                    row.setAttribute('data-id', equipment.id_equipment);
+
+                    row.insertCell(0).innerText = equipment.id_equipment;
+                    row.insertCell(1).innerText = equipment.category;
+                    row.insertCell(2).innerText = equipment.product_line;
+                    row.insertCell(3).innerText = equipment.name_product;
+                    row.insertCell(4).innerText = equipment.serial_number;
+                    row.insertCell(5).innerText = equipment.status;
+                    row.insertCell(6).innerText = equipment.location;
+                    row.insertCell(7).innerHTML = '<button class="action-button">Выбрать</button>';
+
+                    row.addEventListener('click', (event) => {
+                        if (event.target.classList.contains('action-button')) {
+                            selectedEquipmentId = equipment.id_equipment;
+                            modal.style.display = 'block';
+                        }
+                    });
+                });
+            } catch (error) {
+                console.error('Error fetching equipment:', error);
+            }
+        }
+
+        fetchData();
+
+        editButton.addEventListener('click', () => {
+            window.location.href = `/updateEquipment?id=${selectedEquipmentId}`;
+        });
+
+        deleteButton.addEventListener('click', async () => {
+            try {
+                const response = await fetch(`/api/v1/equipment/${selectedEquipmentId}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    alert('Equipment deleted successfully!');
+                    modal.style.display = 'none';
+                    location.reload();
+                } else {
+                    const errorData = await response.json();
+                    alert('Error deleting equipment: ' + errorData.message);
+                }
+            } catch (error) {
+                alert('Error deleting equipment: ' + error.message);
+            }
+        });
+
+        document.getElementsByClassName('close')[0].onclick = function() {
+            modal.style.display = 'none';
+        };
+
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+    });
+</script>
 </body>
 </html>
