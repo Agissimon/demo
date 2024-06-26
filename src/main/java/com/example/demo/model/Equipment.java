@@ -13,88 +13,88 @@ public class Equipment {
     private Long id_equipment;
 
     private String Category;
-    private String ProductLine;
-    private String NameProduct;
-    private String SerialNumber;
+    private String product_line;
+    private String name_product;
+    private String serial_number;
     private String Description;
-    private String MarketPrice;
-    private String PurchasePrice;
+    private Double market_price;
+    private Double purchase_price;
     private String Comment;
     private String status;
-    private String name; // добавляемое поле
-    private String location; // добавляемое поле
+    private String location;
+    private String name;
 
     // Геттеры и сеттеры
-    public Long getIdEquipment() {
+    public Long getId_equipment() {
         return id_equipment;
     }
 
-    public void setIdEquipment(Long idEquipment) {
-        id_equipment = idEquipment;
+    public void setId_equipment(Long id_equipment) {
+        this.id_equipment = id_equipment;
     }
 
     public String getCategory() {
         return Category;
     }
 
-    public void setCategory(String category) {
-        Category = category;
+    public void setCategory(String Category) {
+        this.Category = Category;
     }
 
-    public String getProductLine() {
-        return ProductLine;
+    public String getProduct_line() {
+        return product_line;
     }
 
-    public void setProductLine(String productLine) {
-        ProductLine = productLine;
+    public void setProduct_line(String product_line) {
+        this.product_line = product_line;
     }
 
-    public String getNameProduct() {
-        return NameProduct;
+    public String getName_product() {
+        return name_product;
     }
 
-    public void setNameProduct(String nameProduct) {
-        NameProduct = nameProduct;
+    public void setName_product(String name_product) {
+        this.name_product = name_product;
     }
 
-    public String getSerialNumber() {
-        return SerialNumber;
+    public String getSerial_number() {
+        return serial_number;
     }
 
-    public void setSerialNumber(String serialNumber) {
-        SerialNumber = serialNumber;
+    public void setSerial_number(String serial_number) {
+        this.serial_number = serial_number;
     }
 
     public String getDescription() {
         return Description;
     }
 
-    public void setDescription(String description) {
-        Description = description;
+    public void setDescription(String Description) {
+        this.Description = Description;
     }
 
-    public String getMarketPrice() {
-        return MarketPrice;
+    public Double getMarket_price() {
+        return market_price;
     }
 
-    public void setMarketPrice(String marketPrice) {
-        MarketPrice = marketPrice;
+    public void setMarket_price(Double market_price) {
+        this.market_price = market_price;
     }
 
-    public String getPurchasePrice() {
-        return PurchasePrice;
+    public Double getPurchase_price() {
+        return purchase_price;
     }
 
-    public void setPurchasePrice(String purchasePrice) {
-        PurchasePrice = purchasePrice;
+    public void setPurchase_price(Double purchase_price) {
+        this.purchase_price = purchase_price;
     }
 
     public String getComment() {
         return Comment;
     }
 
-    public void setComment(String comment) {
-        Comment = comment;
+    public void setComment(String Comment) {
+        this.Comment = Comment;
     }
 
     public String getStatus() {
@@ -105,19 +105,19 @@ public class Equipment {
         this.status = status;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getLocation() {
         return location;
     }
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -21,23 +21,54 @@
 </nav>
 <main>
     <form action="/api/v1/equipment" method="post" class="form-center">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        <br>
-        <label for="serial">Serial Number:</label>
-        <input type="text" id="serial" name="serial" required>
-        <br>
-        <label for="status">Status:</label>
-        <input type="text" id="status" name="status" required>
-        <br>
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location" required>
-        <br>
-        <input type="submit" value="Add Equipment">
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" required>
+        </div>
+        <div class="form-group">
+            <label for="product_line">Product Line:</label>
+            <input type="text" id="product_line" name="product_line" required>
+        </div>
+        <div class="form-group">
+            <label for="name_product">Name Product:</label>
+            <input type="text" id="name_product" name="name_product" required>
+        </div>
+        <div class="form-group">
+            <label for="serial_number">Serial Number:</label>
+            <input type="text" id="serial_number" name="serial_number" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description">
+        </div>
+        <div class="form-group">
+            <label for="market_price">Market Price:</label>
+            <input type="number" step="0.01" id="market_price" name="market_price">
+        </div>
+        <div class="form-group">
+            <label for="purchase_price">Purchase Price:</label>
+            <input type="number" step="0.01" id="purchase_price" name="purchase_price">
+        </div>
+        <div class="form-group">
+            <label for="comment">Comment:</label>
+            <input type="text" id="comment" name="comment">
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <input type="text" id="status" name="status" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+        </div>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">Add Equipment</button>
+        </div>
     </form>
 </main>
-<footer>
-    <p>&copy; 2024 Equipment Management System</p>
-</footer>
 </body>
 </html>
