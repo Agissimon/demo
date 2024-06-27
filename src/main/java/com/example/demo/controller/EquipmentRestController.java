@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Equipment;
+import com.example.demo.model.EquipmentStatusReportProjection;
 import com.example.demo.repository.EquipmentRepository;
+import com.example.demo.repository.EquipmentStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +18,27 @@ import java.util.Map;
 public class EquipmentRestController {
 
     @Autowired
+    private EquipmentStatusRepository equipmentStatusRepository;
+
+    @Autowired
     private EquipmentRepository equipmentRepository;
+
+    @GetMapping("/equipment/report")
+    public List<EquipmentStatusReportProjection> getEquipmentReport(
+            @RequestParam(value = "startDate", required = false) String startDate,
+            @RequestParam(value = "endDate", required = false) String endDate,
+            @RequestParam(value = "serialNumber", required = false) String serialNumber) {
+
+        if (startDate != null && endDate != null && serialNumber != null) {
+            return equipmentStatusRepository.findByDateRangeAndSerialNumber(startDate, endDate, serialNumber);
+        } else if (startDate != null && endDate != null) {
+            return equipmentStatusRepository.findByDateRange(startDate, endDate);
+        } else if (serialNumber != null) {
+            return equipmentStatusRepository.findBySerialNumber(serialNumber);
+        } else {
+            return equipmentStatusRepository.findAllReports();
+        }
+    }
 
     @GetMapping("/equipment")
     public List<Equipment> getAllEquipments() {
@@ -27,7 +49,6 @@ public class EquipmentRestController {
     public Equipment createEquipment(@RequestBody Equipment equipment) {
         return equipmentRepository.save(equipment);
     }
-
 
     @GetMapping("/equipment/{id_equipment}")
     public ResponseEntity<Equipment> getEquipmentById(@PathVariable(value = "id_equipment") Long equipmentId)
