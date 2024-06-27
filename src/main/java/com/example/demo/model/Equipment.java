@@ -10,7 +10,7 @@ public class Equipment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_equipment;
+    private int id_equipment;
 
     private String Category;
     private String product_line;
@@ -25,11 +25,11 @@ public class Equipment {
     private String name;
 
     // Геттеры и сеттеры
-    public Long getId_equipment() {
+    public int getId_equipment() {
         return id_equipment;
     }
 
-    public void setId_equipment(Long id_equipment) {
+    public void setId_equipment(int id_equipment) {
         this.id_equipment = id_equipment;
     }
 

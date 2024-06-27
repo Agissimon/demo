@@ -20,17 +20,41 @@
     </ul>
 </nav>
 <main>
-    <form action="/api/v1/equipment/report" method="get" class="form-center">
-        <label>Start Date:</label><input type="date" name="startDate"><br>
-        <label>End Date:</label><input type="date" name="endDate"><br>
+    <form id="reportForm" class="form-center">
+        <div class="form-group">
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="startDate">
+        </div>
+        <div class="form-group">
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="endDate">
+        </div>
+        <div class="form-group">
+            <label for="serial_number">Serial Number:</label>
+            <input type="text" id="serial_number" name="serialNumber">
+        </div>
         <button type="submit">Generate Report</button>
     </form>
     <div id="report">
-
+        <table class="styled-table">
+            <thead>
+            <tr>
+                <th>Serial Number</th>
+                <th>Current Status</th>
+                <th>Location</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+            </thead>
+            <tbody id="reportTableBody">
+            <!-- Report rows will be inserted here -->
+            </tbody>
+        </table>
     </div>
 </main>
 <footer>
     <p>&copy; 2024 Equipment Management System</p>
 </footer>
+<script src="/reportScript.js"></script>
 </body>
 </html>
