@@ -20,6 +20,21 @@
     </ul>
 </nav>
 <main>
+    <div class="filter-container">
+        <label for="filterSelect" class="filter-label">
+            <img src="/icon/filter-icon.png" alt="Filter Icon" class="filter-icon">
+            <select id="filterSelect">
+                <option value="all">All</option>
+                <option value="laptop">Laptop</option>
+                <option value="desktop">Desktop</option>
+                <!-- Добавьте другие опции по необходимости -->
+            </select>
+        </label>
+        <label for="searchInput" class="search-label">
+            <img src="/icon/search-icon.png" alt="Search Icon" class="search-icon">
+            <input type="text" id="searchInput" placeholder="Поиск по серийному номеру или названию продукта...">
+        </label>
+    </div>
     <table id="equipmentTable" class="styled-table">
         <thead>
         <tr>
@@ -55,37 +70,59 @@
         const modal = document.getElementById('modal');
         const editButton = document.getElementById('editButton');
         const deleteButton = document.getElementById('deleteButton');
+        const searchInput = document.getElementById('searchInput');
+        const filterSelect = document.getElementById('filterSelect');
         let selectedEquipmentId = null;
+        let equipmentData = [];
 
         async function fetchData() {
             try {
                 const response = await fetch('/api/v1/equipment');
-                const data = await response.json();
-
-                data.forEach(equipment => {
-                    const row = table.insertRow();
-                    row.setAttribute('data-id', equipment.id_equipment);
-
-                    row.insertCell(0).innerText = equipment.id_equipment;
-                    row.insertCell(1).innerText = equipment.category;
-                    row.insertCell(2).innerText = equipment.product_line;
-                    row.insertCell(3).innerText = equipment.name_product;
-                    row.insertCell(4).innerText = equipment.serial_number;
-                    row.insertCell(5).innerText = equipment.status;
-                    row.insertCell(6).innerText = equipment.location;
-                    row.insertCell(7).innerHTML = '<button class="action-button">Выбрать</button>';
-
-                    row.addEventListener('click', (event) => {
-                        if (event.target.classList.contains('action-button')) {
-                            selectedEquipmentId = equipment.id_equipment;
-                            modal.style.display = 'block';
-                        }
-                    });
-                });
+                equipmentData = await response.json();
+                renderTable(equipmentData);
             } catch (error) {
                 console.error('Error fetching equipment:', error);
             }
         }
+
+        function renderTable(data) {
+            table.innerHTML = '';
+            data.forEach(equipment => {
+                const row = table.insertRow();
+                row.setAttribute('data-id', equipment.id_equipment);
+
+                row.insertCell(0).innerText = equipment.id_equipment;
+                row.insertCell(1).innerText = equipment.category;
+                row.insertCell(2).innerText = equipment.product_line;
+                row.insertCell(3).innerText = equipment.name_product;
+                row.insertCell(4).innerText = equipment.serial_number;
+                row.insertCell(5).innerText = equipment.status;
+                row.insertCell(6).innerText = equipment.location;
+                row.insertCell(7).innerHTML = '<button class="action-button">Выбрать</button>';
+
+                row.addEventListener('click', (event) => {
+                    if (event.target.classList.contains('action-button')) {
+                        selectedEquipmentId = equipment.id_equipment;
+                        modal.style.display = 'block';
+                    }
+                });
+            });
+        }
+
+        searchInput.addEventListener('input', (event) => {
+            const filter = event.target.value.toLowerCase();
+            const filteredData = equipmentData.filter(equipment => {
+                return equipment.serial_number.toLowerCase().includes(filter) ||
+                    equipment.name_product.toLowerCase().includes(filter);
+            });
+            renderTable(filteredData);
+        });
+
+        filterSelect.addEventListener('change', (event) => {
+            const filter = event.target.value;
+            const filteredData = filter === 'all' ? equipmentData : equipmentData.filter(equipment => equipment.category.toLowerCase() === filter);
+            renderTable(filteredData);
+        });
 
         fetchData();
 

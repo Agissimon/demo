@@ -43,6 +43,38 @@ main {
     padding: 20px;
 }
 
+.filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-label, .search-label {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.filter-icon, .search-icon {
+    margin-right: 10px;
+}
+
+#searchInput {
+    width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#filterSelect {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
 .styled-table {
     border-collapse: collapse;
     width: 100%;
@@ -218,4 +250,11 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+.filter-icon, .search-icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 10px;
 }
