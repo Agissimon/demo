@@ -1,13 +1,12 @@
 package com.example.demo.service;
 
-//import com.example.demo.model.EquipmentStatus;
+
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Equipment;
+import com.example.demo.model.EquipmentStatusUpdateRequest;
 import com.example.demo.repository.EquipmentRepository;
-//import com.example.demo.repository.EquipmentStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,13 +15,15 @@ public class EquipmentService {
 
     @Autowired
 
-//rivate EquipmentStatusRepository equipmentStatusRepository;
-//
-//ublic List<EquipmentStatus> findEquipmentStatusByDate(Date date) {
-//   return equipmentStatusRepository.findAllByDate(date);
-//
-
     private EquipmentRepository equipmentRepository;
+
+    public void updateEquipmentStatus(Long id, EquipmentStatusUpdateRequest request) {
+        Equipment equipment = equipmentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Equipment not found for this id :: " + id));
+
+        equipment.setStatus(request.getCurrent_status());
+        equipmentRepository.save(equipment);
+    }
 
     public Equipment addEquipment(Equipment equipment) {
         return equipmentRepository.save(equipment);
