@@ -3,8 +3,10 @@ package com.example.demo.controller;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Equipment;
 import com.example.demo.model.EquipmentStatusReportProjection;
+import com.example.demo.model.EquipmentStatusUpdateRequest;
 import com.example.demo.repository.EquipmentRepository;
 import com.example.demo.repository.EquipmentStatusRepository;
+import com.example.demo.service.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +20,19 @@ import java.util.Map;
 public class EquipmentRestController {
 
     @Autowired
+    private EquipmentService equipmentService;
+
+    @Autowired
     private EquipmentStatusRepository equipmentStatusRepository;
 
     @Autowired
     private EquipmentRepository equipmentRepository;
+
+    @PutMapping("/equipment/{id}/status")
+    public ResponseEntity<Void> updateEquipmentStatus(@PathVariable Long id, @RequestBody EquipmentStatusUpdateRequest request) {
+        equipmentService.updateEquipmentStatus(id, request);
+        return ResponseEntity.ok().build();
+    }
 
     @GetMapping("/equipment/report")
     public List<EquipmentStatusReportProjection> getEquipmentReport(
@@ -43,6 +54,11 @@ public class EquipmentRestController {
     @GetMapping("/equipment")
     public List<Equipment> getAllEquipments() {
         return equipmentRepository.findAll();
+    }
+
+    @GetMapping("/equipment/search")
+    public List<Equipment> searchEquipment(@RequestParam("query") String query) {
+        return equipmentRepository.findByNameContaining(query);
     }
 
     @PostMapping("/equipment")
