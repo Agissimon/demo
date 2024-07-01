@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Equipment</title>
     <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" href="/icon/delf.ico" type="image/x-icon">
 </head>
 <body>
 <header>
@@ -14,8 +15,8 @@
     <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/addEquipment">Add Equipment</a></li>
-        <li><a href="/updateEquipment">Update Equipment</a></li>
-        <li><a href="/searchEquipment">Search Equipment</a></li>
+        <!-- <li><a href="/updateEquipment">Update Equipment</a></li> -->
+        <!-- <li><a href="/searchEquipment">Search Equipment</a></li> -->
         <li><a href="/reports">Reports</a></li>
     </ul>
 </nav>
@@ -70,41 +71,6 @@
         </div>
     </form>
 </main>
-<script>
-    async function submitForm() {
-        const form = document.getElementById('equipmentForm');
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-
-        // Валидация полей
-        const requiredFields = ['category', 'product_line', 'name_product', 'serial_number', 'status', 'location', 'name'];
-        for (const field of requiredFields) {
-            if (!data[field]) {
-                alert(`Please fill in the ${field} field.`);
-                return;
-            }
-        }
-
-        try {
-            const response = await fetch('/api/v1/equipment', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-
-            if (response.ok) {
-                alert('Equipment added successfully!');
-                form.reset();
-            } else {
-                const errorData = await response.json();
-                alert('Error adding equipment: ' + errorData.message);
-            }
-        } catch (error) {
-            alert('Error adding equipment: ' + error.message);
-        }
-    }
-</script>
+<script src="/addEquipmentScript.js"></script>
 </body>
 </html>
