@@ -182,7 +182,8 @@ main {
 }
 
 .form-group input[type="text"],
-.form-group input[type="number"] {
+.form-group input[type="number"],
+.form-group select {
     width: 100%;
     padding: 8px;
     border: 1px solid #ddd;
@@ -192,7 +193,8 @@ main {
 }
 
 .form-group input[type="text"]:focus,
-.form-group input[type="number"]:focus {
+.form-group input[type="number"]:focus,
+.form-group select:focus {
     outline: none;
     border-color: #4CAF50;
 }

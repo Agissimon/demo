@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const reportForm = document.getElementById('reportForm');
     const reportTableBody = document.getElementById('reportTableBody');
+    const reportContainer = document.getElementById('report');
 
     reportForm.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -32,6 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
                 reportTableBody.appendChild(row);
             });
+
+            // Отображение таблицы отчета
+            reportContainer.style.display = 'block';
         } catch (error) {
             console.error('Ошибка генерации отчета:', error);
         }
