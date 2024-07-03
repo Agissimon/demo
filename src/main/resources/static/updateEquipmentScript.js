@@ -26,35 +26,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function submitUpdateForm() {
-    const id_equipment = document.getElementById('id_equipment').value;
-    const category = document.getElementById('category').value;
-    const product_line = document.getElementById('product_line').value;
-    const name_product = document.getElementById('name_product').value;
-    const serial_number = document.getElementById('serial_number').value;
-    const description = document.getElementById('description').value;
-    const market_price = document.getElementById('market_price').value;
-    const purchase_price = document.getElementById('purchase_price').value;
-    const comment = document.getElementById('comment').value;
-    const status = document.getElementById('status').value;
-    const location = document.getElementById('location').value;
-    const name = document.getElementById('name').value;
-
-    const data = {
-        category,
-        product_line,
-        name_product,
-        serial_number,
-        description,
-        market_price,
-        purchase_price,
-        comment,
-        status,
-        location,
-        name
-    };
+    const form = document.getElementById('updateEquipmentForm');
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
 
     try {
-        const response = await fetch(`/api/v1/equipment/${id_equipment}`, {
+        const response = await fetch(`/api/v1/equipment/${data.id_equipment}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
